@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useReactToPrint } from "react-to-print";
 import {
   Check,
-  CheckCircle2,
   Download,
   MessageCircle,
   Send,
@@ -141,118 +140,76 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
         </div>
 
         {/* Dynamic Body */}
-        {selectedPlans.length === 1 ? (
-          <div className="max-w-xl mx-auto text-center mt-12 mb-16">
-            <div className="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle2 className="w-8 h-8" />
-            </div>
-            <h2 className="text-xl font-medium text-neutral-500 mb-2">
-              Prepared for {formData.fullName}
-            </h2>
-            <div className="text-5xl font-bold text-black mb-4">
-              ${totalPrice}
-              <span className="text-xl font-normal text-neutral-500">/yr</span>
-            </div>
-            <div className="inline-block px-4 py-1 rounded-full bg-blue-50 text-blue-700 text-lg font-semibold mb-10">
-              {selectedPlans[0].name}
-            </div>
-
-            <div className="border border-neutral-200 rounded-xl p-6 text-left">
-              <h3 className="font-semibold text-black mb-4">
-                Coverage Summary
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-500">Building Limit</span>
-                  <span className="font-medium text-black">
-                    ${formData.buildingCost.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-500">Content Limit</span>
-                  <span className="font-medium text-black">
-                    ${formData.contentValue.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-neutral-500">Email</span>
-                  <span className="font-medium text-black">
-                    {formData.email}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="mt-8 overflow-x-auto pb-4">
-            <div className="mb-8">
+        <div className="mt-8 overflow-x-auto pb-4">
+          <div className="mb-8">
+            {selectedPlans.length > 1 && (
               <h2 className="text-xl font-semibold text-black">
                 Plan Comparison
               </h2>
-              <p className="text-sm text-neutral-500">
-                Prepared for {formData.fullName}
-              </p>
-            </div>
-
-            <table className="w-full text-left border-collapse min-w-[600px]">
-              <thead>
-                <tr>
-                  <th className="p-4 border-b border-neutral-200 text-sm font-semibold text-neutral-500">
-                    Feature / Plan
-                  </th>
-                  {selectedPlans.map((plan) => (
-                    <th
-                      key={plan.name}
-                      className="p-4 border-b border-neutral-200 text-center"
-                    >
-                      <div className="font-bold text-black text-lg">
-                        {plan.name}
-                      </div>
-                      <div className="text-blue-600 font-semibold mt-1">
-                        ${plan.price}/yr
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonMetrics.map((metric, idx) => (
-                  <tr
-                    key={idx}
-                    className="border-b border-neutral-100 last:border-0"
-                  >
-                    <td className="p-4 text-sm font-medium text-neutral-700">
-                      {metric.name}
-                    </td>
-                    {selectedPlans.map((plan) => {
-                      const value = metric.getValue(plan.name);
-                      return (
-                        <td
-                          key={plan.name}
-                          className="p-4 text-center text-sm text-neutral-600"
-                        >
-                          {typeof value === "boolean" ? (
-                            value ? (
-                              <Check className="w-5 h-5 text-green-500 mx-auto" />
-                            ) : (
-                              <X className="w-5 h-5 text-neutral-300 mx-auto" />
-                            )
-                          ) : value === "X" ? (
-                            <X className="w-5 h-5 text-neutral-300 mx-auto" />
-                          ) : (
-                            <span className="font-medium text-black">
-                              {value}
-                            </span>
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            )}
+            <p className="text-sm text-neutral-500">
+              Prepared for {formData.fullName}
+            </p>
           </div>
-        )}
+
+          <table className="w-full text-left border-collapse min-w-[600px]">
+            <thead>
+              <tr>
+                <th className="p-4 border-b border-neutral-200 text-sm font-semibold text-neutral-500">
+                  Feature / Plan
+                </th>
+                {selectedPlans.map((plan) => (
+                  <th
+                    key={plan.name}
+                    className="p-4 border-b border-neutral-200 text-center"
+                  >
+                    <div className="font-bold text-black text-lg">
+                      {plan.name}
+                    </div>
+                    <div className="text-blue-600 font-semibold mt-1">
+                      ${plan.price}/yr
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonMetrics.map((metric, idx) => (
+                <tr
+                  key={idx}
+                  className="border-b border-neutral-100 last:border-0"
+                >
+                  <td className="p-4 text-sm font-medium text-neutral-700">
+                    {metric.name}
+                  </td>
+                  {selectedPlans.map((plan) => {
+                    const value = metric.getValue(plan.name);
+                    return (
+                      <td
+                        key={plan.name}
+                        className="p-4 text-center text-sm text-neutral-600"
+                      >
+                        {typeof value === "boolean" ? (
+                          value ? (
+                            <Check className="w-5 h-5 text-green-500 mx-auto" />
+                          ) : (
+                            <X className="w-5 h-5 text-neutral-300 mx-auto" />
+                          )
+                        ) : value === "X" ? (
+                          <X className="w-5 h-5 text-neutral-300 mx-auto" />
+                        ) : (
+                          <span className="font-medium text-black">
+                            {value}
+                          </span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

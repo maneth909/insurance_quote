@@ -104,7 +104,11 @@ export function StepPersonalInfo({
             value={formData.residence}
             onChange={(e) => updateFormData("residence", e.target.value)}
             onBlur={() => markTouched("residence")}
-            className={`w-full rounded-xl border bg-white dark:bg-neutral-950 px-4 py-3 text-neutral-900 dark:text-white outline-none transition-colors appearance-none ${
+            className={`w-full rounded-xl border bg-white dark:bg-neutral-950 px-4 py-3 outline-none transition-colors appearance-none ${
+              formData.residence === ""
+                ? "text-neutral-400"
+                : "text-neutral-900 dark:text-white"
+            } ${
               isResidenceInvalid
                 ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                 : "border-neutral-300 dark:border-neutral-700 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
