@@ -107,16 +107,15 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
       {/* The A4 Document Container */}
       <div
         ref={componentRef}
-        className="w-full max-w-4xl bg-white text-black border border-neutral-200 shadow-lg p-8 lg:p-12"
+        // ADDED print:shadow-none and print:border-none here
+        className="w-full max-w-4xl bg-white text-black border border-neutral-200 shadow-lg print:shadow-none print:border-none p-8 lg:p-12"
       >
         {/* Letterhead Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start border-b border-neutral-200 pb-8 mb-8">
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-blue-600">
               WECARE
-              <span className="text-black">
-                Insurance
-              </span>
+              <span className="text-black">Insurance</span>
             </h1>
             <p className="text-sm text-neutral-500 mt-1">
               Comprehensive Protection Plan
@@ -126,12 +125,8 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
             <p className="text-sm font-medium text-black">
               Quote Ref: {quoteRef}
             </p>
-            <p className="text-sm text-neutral-500">
-              Date: {dateStr}
-            </p>
-            <p className="text-sm text-neutral-500">
-              Valid for 30 Days
-            </p>
+            <p className="text-sm text-neutral-500">Date: {dateStr}</p>
+            <p className="text-sm text-neutral-500">Valid for 30 Days</p>
           </div>
         </div>
 
@@ -146,9 +141,7 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
             </h2>
             <div className="text-5xl font-bold text-black mb-4">
               ${totalPrice}
-              <span className="text-xl font-normal text-neutral-500">
-                /yr
-              </span>
+              <span className="text-xl font-normal text-neutral-500">/yr</span>
             </div>
             <div className="inline-block px-4 py-1 rounded-full bg-blue-50 text-blue-700 text-lg font-semibold mb-10">
               {selectedPlans[0].name}
@@ -160,25 +153,19 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-500">
-                    Building Limit
-                  </span>
+                  <span className="text-neutral-500">Building Limit</span>
                   <span className="font-medium text-black">
                     ${formData.buildingCost.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-500">
-                    Content Limit
-                  </span>
+                  <span className="text-neutral-500">Content Limit</span>
                   <span className="font-medium text-black">
                     ${formData.contentValue.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-500">
-                    Email
-                  </span>
+                  <span className="text-neutral-500">Email</span>
                   <span className="font-medium text-black">
                     {formData.email}
                   </span>
@@ -260,4 +247,3 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
     </div>
   );
 }
-
