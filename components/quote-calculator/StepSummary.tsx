@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { useReactToPrint } from "react-to-print";
 import {
   Check,
@@ -112,14 +113,17 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
       >
         {/* Letterhead Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start border-b border-neutral-200 pb-8 mb-8">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-blue-600">
-              WECARE
-              <span className="text-black">Insurance</span>
-            </h1>
-            <p className="text-sm text-neutral-500 mt-1">
-              Comprehensive Protection Plan
-            </p>
+          <div className="flex items-center gap-4">
+            <Image src="/logo.jpg" alt="Wecare Insurance Cambodia Logo" width={56} height={56} className="h-14 w-14 object-contain rounded-lg" />
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-blue-600">
+                Wecare Insurance
+                <span className="text-black ml-2">Cambodia</span>
+              </h1>
+              <p className="text-sm text-neutral-500 mt-1">
+                Comprehensive Protection Plan
+              </p>
+            </div>
           </div>
           <div className="mt-4 sm:mt-0 text-left sm:text-right">
             <p className="text-sm font-medium text-black">

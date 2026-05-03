@@ -1,6 +1,7 @@
 "use client";
 
-import { Moon, Sun, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -16,11 +17,11 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="h-8 w-8 text-blue-600 dark:text-blue-500" />
+          <Image src="/logo.jpg" alt="Wecare Insurance Cambodia" width={32} height={32} className="h-8 w-8 object-contain rounded-md" />
           <span className="text-xl font-bold tracking-tight text-neutral-900 dark:text-white">
-            WECARE{" "}
+            Wecare Insurance{" "}
             <span className="font-medium text-neutral-500 dark:text-neutral-400">
-              Broker
+              Cambodia
             </span>
           </span>
         </div>
