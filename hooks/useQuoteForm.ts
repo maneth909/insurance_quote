@@ -8,6 +8,8 @@ export type SelectedPlan = {
 export type FormData = {
   fullName: string;
   email: string;
+  phone: string;
+  residence: string;
   buildingCost: number;
   contentValue: number;
   selectedPlans: SelectedPlan[];
@@ -18,12 +20,14 @@ export function useQuoteForm() {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
+    phone: "",
+    residence: "",
     buildingCost: 350000,
     contentValue: 50000,
     selectedPlans: [],
   });
   
-  const [touched, setTouched] = useState({ fullName: false, email: false });
+  const [touched, setTouched] = useState({ fullName: false, email: false, phone: false, residence: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const basePremium = Math.round(
@@ -32,11 +36,13 @@ export function useQuoteForm() {
 
   const isStep1Valid = 
     formData.fullName.length > 2 && 
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+    formData.phone.length > 6 &&
+    formData.residence !== "";
 
   const handleNext = async () => {
     if (step === 1) {
-      setTouched({ fullName: true, email: true });
+      setTouched({ fullName: true, email: true, phone: true, residence: true });
       if (!isStep1Valid) return;
     }
 
@@ -68,11 +74,13 @@ export function useQuoteForm() {
     setFormData({
       fullName: "",
       email: "",
+      phone: "",
+      residence: "",
       buildingCost: 350000,
       contentValue: 50000,
       selectedPlans: [],
     });
-    setTouched({ fullName: false, email: false });
+    setTouched({ fullName: false, email: false, phone: false, residence: false });
     setIsSubmitting(false);
   };
 

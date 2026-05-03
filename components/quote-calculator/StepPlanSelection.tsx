@@ -75,14 +75,12 @@ export function StepPlanSelection({
               className={`relative rounded-2xl border bg-white dark:bg-neutral-900 p-6 flex flex-col transition-all duration-300 ${
                 isSelected
                   ? "border-blue-500 bg-blue-50/50 dark:bg-blue-900/10 shadow-xl shadow-blue-500/10 md:-translate-y-1 z-20"
-                  : plan.isPopular
-                    ? "border-blue-500/30 shadow-lg md:-translate-y-1 z-10"
-                    : "border-neutral-200 dark:border-neutral-800 shadow-sm"
+                  : "border-neutral-200 dark:border-neutral-800 shadow-sm"
               } hover:border-blue-400/50 dark:hover:border-blue-700/50 hover:shadow-md cursor-pointer`}
               onClick={() => handleToggle(plan.name, plan.price)}
             >
               {plan.isPopular && !isSelected && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 dark:bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-neutral-100 border border-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-sm">
                   Most Popular
                 </div>
               )}
@@ -112,7 +110,7 @@ export function StepPlanSelection({
                     className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-300"
                   >
                     <CheckCircle2
-                      className={`h-5 w-5 shrink-0 ${plan.isPopular || isSelected ? "text-blue-600 dark:text-blue-500" : "text-neutral-400 dark:text-neutral-500"}`}
+                      className={`h-5 w-5 shrink-0 ${isSelected ? "text-blue-600 dark:text-blue-500" : "text-neutral-300 dark:text-neutral-600"}`}
                     />
                     <span>{feature}</span>
                   </li>
@@ -127,9 +125,7 @@ export function StepPlanSelection({
                 className={`w-full py-3 px-4 rounded-xl font-medium transition-all flex items-center justify-center gap-2 ${
                   isSelected
                     ? "bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50"
-                    : plan.isPopular
-                      ? "bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 active:scale-[0.98]"
-                      : "bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700 active:scale-[0.98]"
+                    : "bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700 active:scale-[0.98]"
                 }`}
               >
                 {isSelected ? (

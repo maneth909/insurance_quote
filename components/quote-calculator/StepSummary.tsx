@@ -108,24 +108,30 @@ export function StepSummary({ formData, selectedPlans }: StepSummaryProps) {
       {/* The A4 Document Container */}
       <div
         ref={componentRef}
-        // ADDED print:shadow-none and print:border-none here
         className="w-full max-w-4xl bg-white text-black border border-neutral-200 shadow-lg print:shadow-none print:border-none p-8 lg:p-12"
       >
         {/* Letterhead Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start border-b border-neutral-200 pb-8 mb-8">
+        <div className="flex flex-col border-b border-neutral-200 pb-8 mb-8">
           <div className="flex items-center gap-4">
-            <Image src="/logo.jpg" alt="Wecare Insurance Cambodia Logo" width={56} height={56} className="h-14 w-14 object-contain rounded-lg" />
+            <Image
+              src="/logo.jpg"
+              alt="Wecare Insurance Cambodia Logo"
+              width={56}
+              height={56}
+              className="h-14 w-14 object-contain rounded-lg"
+            />
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-blue-600">
-                Wecare Insurance
-                <span className="text-black ml-2">Cambodia</span>
+                Wecare Insurance Cambodia
               </h1>
               <p className="text-sm text-neutral-500 mt-1">
                 Comprehensive Protection Plan
               </p>
             </div>
           </div>
-          <div className="mt-4 sm:mt-0 text-left sm:text-right">
+
+          {/* Meta Data Block Moved Below */}
+          <div className="mt-6 text-left">
             <p className="text-sm font-medium text-black">
               Quote Ref: {quoteRef}
             </p>
