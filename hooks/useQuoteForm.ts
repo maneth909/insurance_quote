@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { submitQuoteLead } from "../app/actions/submitQuoteLead";
 
 export type SelectedPlan = {
   name: string;
@@ -48,8 +49,33 @@ export function useQuoteForm() {
 
     if (step === 3 && formData.selectedPlans.length > 0) {
       setIsSubmitting(true);
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const selectedPlansString = formData.selectedPlans
+        .map((plan) => `${plan.name} ($${plan.price})`)
+        .join(", ");
+        
+      const refId = crypto.randomUUID();
+      
+      const payload = {
+        refId,
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        propertyLocation: formData.residence,
+        buildingValue: formData.buildingCost,
+        contentValue: formData.contentValue,
+        calculatedBase: basePremium,
+        selectedPlans: selectedPlansString,
+      };
+
+      const result = await submitQuoteLead(payload);
+      
       setIsSubmitting(false);
+
+      if (!result.success) {
+        console.error("Failed to submit lead");
+        return;
+      }
     }
 
     setStep((prev) => Math.min(prev + 1, 4));

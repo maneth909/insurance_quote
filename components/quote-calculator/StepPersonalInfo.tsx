@@ -115,7 +115,7 @@ export function StepPersonalInfo({
             }`}
           >
             <option value="" disabled>
-              Select a country
+              Select a Country
             </option>
             <option value="Cambodia">Cambodia</option>
             <option value="Laos">Laos</option>
